@@ -1,1 +1,8 @@
-.zip
+*.zip
+angular_seed/node_modules
+angular_seed/.vscode
+angular_seed/documentation
+webapi/.vs
+webapi/.vscode
+webapi/bin
+webapi/obj
