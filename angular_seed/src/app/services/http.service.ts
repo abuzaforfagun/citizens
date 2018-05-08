@@ -19,7 +19,7 @@ export class HttpService {
 
   postData(url, body) {
     let headers = {
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      headers: { 'Content-Type': 'application/json', 'Accept': '*/*'}
     };
 
     url = this.root + url;
