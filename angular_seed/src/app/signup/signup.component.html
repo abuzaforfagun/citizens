@@ -1,0 +1,209 @@
+<div *ngIf="!registrationCompleted" class="row">
+  <div class="col-md-8 ">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title">New Citizens Sign Up</h4>
+        <p class="card-category">Complete your profile</p>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-select placeholder="Pledge" name="optPledge" [(ngModel)] = "userDetails.pledge">
+                  <mat-option *ngFor="let item of pledges" [value]="item.id">
+                    {{ item.text }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width">
+                <input matInput name="txtName" [(ngModel)] = "userDetails.name" placeholder="Name">
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width">
+                <input matInput name="txtEmail" [(ngModel)] = "userDetails.email" placeholder="Email" type="email">
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field>
+                <mat-select name="optGroup"   placeholder="Group" [(ngModel)]="userDetails.group">
+                  <mat-option  *ngFor="let item of groups" [value]="item.id">
+                    {{ item.text }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input matInput name="txtUserName" [(ngModel)] = "userDetails.userName" placeholder="Username" type="text">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input matInput name="txtPassword" [(ngModel)] = "userDetails.password" placeholder="Password" type="password">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <label for="singleFile">Your Photo</label>
+              <input id="singleFile" type="file"/>
+              <br>
+              <!-- <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">
+
+                <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
+              </mat-file-upload-queue> -->
+
+
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+
+              <mat-radio-group name="radioProfileType" [(ngModel)] = "userDetails.profile_type">
+                <label>Profile Type</label>
+                <mat-radio-button value="1">Public</mat-radio-button>
+                <mat-radio-button value="2">Private</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="">What you have memorized?</label>
+            </div>
+            <div class="col-md-8">
+              <mat-form-field class="example-full-width">
+                <input   name="suraName" matInput [(ngModel)]="memorization.sura"  placeholder="Surah" type="text">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-4">
+              <button mat-raised-button type="submit"  (click)="addItemInList(memorizationList, memorization)" class="btn btn-primary">+</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="">Memorization goals</label>
+            </div>
+            <div class="col-md-8">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Surah" name="memorizationGoal" [(ngModel)] = "memorizationGoal.sura" type="text">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-4">
+              <button mat-raised-button type="submit"  (click)="addItemInList(memorizationGoalList, memorizationGoal)"  class="btn btn-primary">+</button>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-checkbox name="optIsSponsorRequired" [(ngModel)] = "userDetails.isSponsorRequired">Looking for a sponsor</mat-checkbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              Would you like to make a donation now or in future Inshallah?
+              <br/>
+
+              <mat-checkbox name="optSupportEffortOf" [(ngModel)] = "userDetails.supportEffortOf">Support effort of ...</mat-checkbox>
+              <mat-checkbox name="optSponsorStudent" [(ngModel)] = "userDetails.sponsorStudent">Sponsor a student</mat-checkbox>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <textarea matInput  name="txtAddress" [(ngModel)] = "userDetails.address" placeholder="Your address (to send staff..."></textarea>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <button mat-raised-button type="submit" (click) = "clickSignUp()" class="btn btn-danger pull-right">Sign Up</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card card-profile">
+      <div class="card-body">
+
+        <div class="col-md-12">
+          <div class="card" *ngIf="memorizationList.length > 0">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title ">You have memorized</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>SL</th>
+                    <th>Name</th>
+                    <th></th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let memorizationItem of memorizationList; let itemIndex = index">
+                      <td>{{ itemIndex + 1}}</td>
+                      <td>{{memorizationItem.sura}}</td>
+                      <td>
+                        <button mat-raised-button (click)="removeItemFromList(memorizationList, itemIndex)" type="submit" class="btn btn-danger pull-right">X</button>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card" *ngIf="memorizationGoalList.length > 0">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title ">Memorization goal</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>SL</th>
+                    <th>Name</th>
+                    <th></th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of memorizationGoalList; let itemIndex = index">
+                      <td>{{itemIndex + 1}}</td>
+                      <td>{{item.sura}}</td>
+                      <td>
+                        <button mat-raised-button (click)="removeItemFromList(memorizationGoalList, itemIndex)" type="submit" class="btn btn-danger pull-right">X</button>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <a href="#pablo" class="btn btn-danger btn-round">Follow</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="registrationCompleted" class= "row">
+  <div class = "col-md-12">
+    <div class = "middle_text">
+      <h2>Registration Completed! Please try to login now...</h2>
+    </div>
+  </div>
+</div>
