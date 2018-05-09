@@ -36,6 +36,7 @@ namespace web_api.Presistance
                 ObjParm.Add("@ayat_to", memorization.To);
                 ObjParm.Add("@updated_date", memorization.UpdatedDate);
                 ObjParm.Add("@user_guid", memorization.UserGuId);
+                ObjParm.Add("@id", dbType: DbType.Int32, direction: ParameterDirection.Output);
                 
                 dbConnection.Execute("Insert_Memorization", ObjParm, commandType: CommandType.StoredProcedure);
                 memorization.Id = ObjParm.Get<int>("@id");
