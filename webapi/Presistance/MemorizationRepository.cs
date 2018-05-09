@@ -29,17 +29,16 @@ namespace web_api.Presistance
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                string query =
-                $@"exec Insert_Memorization 
-                {memorization.Id}, 
-                '{memorization.Name}', 
-                {memorization.From}, 
-                {memorization.To}, 
-                '{memorization.UpdatedDate}', 
-                '{memorization.UserGuId}'
-                ";
-                // dbConnection.Execute(query);
-                dbConnection.Query<int>(query, memorization.Id);
+                DynamicParameters ObjParm = new DynamicParameters();
+                ObjParm.Add("@name", memorization.Name);
+                ObjParm.Add("@is_completed", memorization.IsCompleted);
+                ObjParm.Add("@ayat_from", memorization.From);
+                ObjParm.Add("@ayat_to", memorization.To);
+                ObjParm.Add("@updated_date", memorization.UpdatedDate);
+                ObjParm.Add("@user_guid", memorization.UserGuId);
+                
+                dbConnection.Execute("Insert_Memorization", ObjParm, commandType: CommandType.StoredProcedure);
+                memorization.Id = ObjParm.Get<int>("@id");
                 // return dbConnection.Query<Citizen>(query, citizen).FirstOrDefault();
             }
             return memorization;
