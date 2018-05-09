@@ -83,7 +83,7 @@
             </div>
             <div class="col-md-8">
               <mat-form-field class="example-full-width">
-                <input   name="suraName" matInput [(ngModel)]="memorization.sura"  placeholder="Surah" type="text">
+                <input   name="suraName" matInput [(ngModel)]="memorization.name"  placeholder="Surah" type="text">
               </mat-form-field>
             </div>
 
@@ -97,7 +97,7 @@
             </div>
             <div class="col-md-8">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Surah" name="memorizationGoal" [(ngModel)] = "memorizationGoal.sura" type="text">
+                <input matInput placeholder="Surah" name="memorizationGoal" [(ngModel)] = "memorizationGoal.name" type="text">
               </mat-form-field>
             </div>
 
@@ -156,7 +156,7 @@
                   <tbody>
                     <tr *ngFor="let memorizationItem of memorizationList; let itemIndex = index">
                       <td>{{ itemIndex + 1}}</td>
-                      <td>{{memorizationItem.sura}}</td>
+                      <td>{{memorizationItem.name}}</td>
                       <td>
                         <button mat-raised-button (click)="removeItemFromList(memorizationList, itemIndex)" type="submit" class="btn btn-danger pull-right">X</button>
                       </td>
@@ -182,7 +182,7 @@
                   <tbody>
                     <tr *ngFor="let item of memorizationGoalList; let itemIndex = index">
                       <td>{{itemIndex + 1}}</td>
-                      <td>{{item.sura}}</td>
+                      <td>{{item.name}}</td>
                       <td>
                         <button mat-raised-button (click)="removeItemFromList(memorizationGoalList, itemIndex)" type="submit" class="btn btn-danger pull-right">X</button>
                       </td>

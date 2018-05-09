@@ -1,6 +1,6 @@
 export class Memorization {
     id: number;
-    name: string;
+    sura: string;
     isCompleted: number;
     from: string;
     to: string;
