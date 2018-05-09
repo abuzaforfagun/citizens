@@ -82,14 +82,18 @@ export class SignupComponent implements OnInit {
   }
 
   private processMemorizations(guId) {
+    const today = new Date();
     this.memorizationList.forEach(val => {
       val.isCompleted = true;
       val.userGuId = guId;
+
+      val.updatedDate = today.getDate();
       this.postMemorization(val);
     });
     this.memorizationGoalList.forEach(val => {
       val.userGuId = guId;
       val.isCompleted = false;
+      val.updatedDate = today;
       this.postMemorization(val);
     });
   }
