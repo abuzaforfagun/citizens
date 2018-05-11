@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using web_api.Models.Citizen;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using webapi.Presistance;
 
 namespace web_api.Presistance
 {
@@ -55,14 +56,30 @@ namespace web_api.Presistance
             return citizen;
         }
 
-        public Citizen Get(int id)
+        public Citizen Get(string guId)
         {
             var citizen = new Citizen();
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                string query = "SELECT * FROM Citizens WHERE id = @id";
-                citizen = dbConnection.Query<Citizen>(query, new { id = id }).FirstOrDefault();
+                string query = $"SELECT * FROM Citizens WHERE guid = '{guId}'";
+                citizen = dbConnection.Query<Citizen>(query).FirstOrDefault();
+            }
+
+            return citizen;
+        }
+
+        public Citizen UserValidation(LoginPresistance login)
+        {
+            var citizen = new Citizen();
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
+                string query = $"SELECT * FROM UsersIdentity WHERE username = '{login.Username}' and password = '{login.Password}'";
+                User user = dbConnection.Query<User>(query).FirstOrDefault();
+                if(user != null){
+                    citizen = Get(user.GuId);
+                }
             }
 
             return citizen;

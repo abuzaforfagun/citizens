@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using web_api.Models.Citizen;
 using web_api.Presistance;
+using webapi.Presistance;
 
 namespace web_api.Controllers
 {
@@ -44,6 +45,17 @@ namespace web_api.Controllers
             // Citizen citizen = this.mapper.Map<CitizenPresistance, Citizen>(citizenPresistance);
             var citizen = this.mapper.Map<CitizenPresistance, Citizen>(citizenPresistance);
             citizen = this.repository.Add(citizen);
+            if (citizen == null)
+            {
+                return BadRequest();
+            }
+            return Ok(citizen);
+        }
+
+        [HttpPost("validate")]
+        public ActionResult Validate([FromBody]LoginPresistance login)
+        {
+            var citizen = this.repository.UserValidation(login);
             if (citizen == null)
             {
                 return BadRequest();
