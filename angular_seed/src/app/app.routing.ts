@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'goalsetup', component: GoalsetupComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'status', component: StatusComponent },
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'table-list', component: TableListComponent },

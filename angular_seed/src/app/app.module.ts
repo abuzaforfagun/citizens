@@ -43,6 +43,7 @@ import { GoalsetupComponent } from './goalsetup/goalsetup.component';
 import { StatusComponent } from './status/status.component';
 import { SignupComponent } from './signup/signup.component';
 import { RecorderComponent } from './recorder/recorder.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -81,7 +82,8 @@ import { RecorderComponent } from './recorder/recorder.component';
     GoalsetupComponent,
     StatusComponent,
     SignupComponent,
-    RecorderComponent
+    RecorderComponent,
+    LoginComponent
   ],
   providers: [HttpService, HttpClient],
   bootstrap: [AppComponent]

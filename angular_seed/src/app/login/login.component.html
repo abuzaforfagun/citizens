@@ -1,0 +1,26 @@
+<div class="row"> 
+<div class="col-md-6">
+  <div class=" col-md-offset-3  card">
+    <div class="card-header card-header-danger">
+      <h4 class="card-title">Login</h4>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput name="txtUserName" [(ngModel)]="userDetails.username" placeholder="Username">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput name="txtPassword" [(ngModel)]="userDetails.password" placeholder="Password">
+            </mat-form-field>
+            <button mat-raised-button type="submit" (click) = "login()" class="btn btn-danger pull-right">Login</button>
+            <div class="clearfix"></div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

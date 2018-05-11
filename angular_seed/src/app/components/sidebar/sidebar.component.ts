@@ -16,6 +16,7 @@ export const ROUTES: RouteInfo[] = [
     { path: 'maps', title: 'Maps',  icon:'location_on', class: '' },
     { path: 'notifications', title: 'Notifications',  icon:'notifications', class: '' }, */
     { path: 'signup', title: 'Sign Up',  icon: 'person', class: '' },
+    { path: 'login', title: 'Login',  icon: 'person', class: '' },
     { path: 'goalsetup', title: 'Goal Setup',  icon: 'add', class: '' },
     { path: 'status', title: 'status',  icon: 'add', class: '' },
 ];
